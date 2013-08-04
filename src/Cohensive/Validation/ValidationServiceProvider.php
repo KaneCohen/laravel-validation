@@ -2,6 +2,7 @@
 namespace Cohensive\Validation;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\DatabasePresenceVerifier;
 
 class ValidationServiceProvider extends ServiceProvider
 {
