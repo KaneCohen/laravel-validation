@@ -182,18 +182,6 @@ class Validator extends BaseValidator implements MessageProviderInterface
 		return ! is_null($otherValue = $this->getValue($other)) and $value != $otherValue;
 	}
 
-	/**
-	 * Validate that an attribute is an array.
-	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @return bool
-	 */
-	protected function validateArray($attribute, $value)
-	{
-		return is_array($value);
-	}
-
 	/*
 	 * Get the size of an attribute.
 	 *
@@ -225,33 +213,6 @@ class Validator extends BaseValidator implements MessageProviderInterface
 		{
 			return $this->getStringSize($value);
 		}
-	}
-
-	/**
-	 * Get the data type of the given attribute.
-	 *
-	 * @param  string  $attribute
-	 * @return string
-	 */
-	protected function getAttributeType($attribute)
-	{
-		// We assume that the attributes present in the file array are files so that
-		// means that if the attribute does not have a numeric rule and the files
-		// list doesn't have it we'll just consider it a string by elimination.
-		if ($this->hasRule($attribute, $this->numericRules))
-		{
-			return 'numeric';
-		}
-		elseif ($this->hasRule($attribute, array('Array')))
-		{
-			return 'array';
-		}
-		elseif (array_key_exists($attribute, $this->files))
-		{
-			return 'file';
-		}
-
-		return 'string';
 	}
 
 	/**
