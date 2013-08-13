@@ -1,11 +1,9 @@
-<?php
-namespace Cohensive\Validation;
+<?php namespace Cohensive\Validation;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\DatabasePresenceVerifier;
 
-class ValidationServiceProvider extends ServiceProvider
-{
+class ValidationServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
