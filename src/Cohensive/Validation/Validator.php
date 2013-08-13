@@ -254,9 +254,10 @@ class Validator extends BaseValidator implements MessageProviderInterface {
 	/**
 	 * Get an item from an array using "dot" notation and "wildcards".
 	 *
-	 * @param  string   $rule
-	 * @param  Closure  $extension
-	 * @return void
+	 * @param  array    $array
+	 * @param  string   $key
+	 * @param  mixed    $default
+	 * @return mixed
 	 */
 	public function arrayGet($array, $key, $default = null)
 	{
