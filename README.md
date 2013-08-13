@@ -16,7 +16,7 @@ Add following require to your `composer.json` file:
 Then run `cimposer install` or `composer update` to download it and autoload.
 
 Once package is installed you need to register it as a service provider. Find `app.php` file in your `app/config` deirectory.
-Firs, since this package extends default Validation, you need to comment out or remove this line from `providers` array: `'Illuminate\Validation\ValidationServiceProvider',` which loads default Laravel Validation class.
+First, since this package extends default Validation, you need to comment out or remove this line from `providers` array: `'Illuminate\Validation\ValidationServiceProvider',` which loads default Laravel Validation class.
 
 Now, in the same `providers` array you need to add new package:
 
@@ -29,3 +29,43 @@ Now, in the same `providers` array you need to add new package:
 
 )
 ~~~
+
+## Usage
+
+Mostly the same as in core Validation. Whenit comes to validation with wildcrads here's an example:
+
+
+````php
+
+$input = array('input' => array('foo', 'bar', 'baz'));
+$rules = array(
+	'input.*' => 'String|Min:3'
+);
+
+$v = Validator::make($input, $rules);
+
+````
+
+Shall we go deeper?
+
+
+````php
+
+$input = array('users' => array(
+	0 => array(
+		'name' => 'Mike',
+		'age'  =>  30
+	),
+	1 => array(
+		'name' => 'Rob',
+		'age'  => '28'
+	)
+));
+$rules = array(
+	'users.*.name' => 'String|Min:3',
+	'users.*.age'  => 'Numeric|Min:18|Max:80'
+);
+
+$v = Validator::make($input, $rules);
+
+````
