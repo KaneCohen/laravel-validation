@@ -39,7 +39,7 @@ Mostly the same as in core Validation. Whenit comes to validation with wildcrads
 
 $input = array('input' => array('foo', 'bar', 'baz'));
 $rules = array(
-	'input.*' => 'String|Min:3'
+	'input.*' => 'Alpha|Min:3'
 );
 
 $v = Validator::make($input, $rules);
@@ -62,7 +62,7 @@ $input = array('users' => array(
 	)
 ));
 $rules = array(
-	'users.*.name' => 'String|Min:3',
+	'users.*.name' => 'Alpha|Min:3',
 	'users.*.age'  => 'Numeric|Min:18|Max:80'
 );
 
