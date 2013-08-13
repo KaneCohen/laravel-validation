@@ -1,18 +1,10 @@
-<?php
-namespace Cohensive\Validation;
+<?php namespace Cohensive\Validation;
 
 use Closure;
-use DateTime;
 use Illuminate\Validation\Validator as BaseValidator;
-use Illuminate\Support\MessageBag;
-use Illuminate\Container\Container;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Translation\TranslatorInterface;
 use Illuminate\Support\Contracts\MessageProviderInterface;
 
-
-class Validator extends BaseValidator implements MessageProviderInterface
-{
+class Validator extends BaseValidator implements MessageProviderInterface {
 
 	/**
 	 * The non iterable validation rules.
