@@ -14,6 +14,13 @@ class Validator extends BaseValidator implements MessageProviderInterface {
 	protected $nonIterableRules = array('Exists');
 
 	/**
+	 * All of the custom validator replacements.
+	 *
+	 * @var array
+	 */
+	protected $replacements = array();
+
+	/**
 	 * Validate a given attribute against a rule.
 	 *
 	 * @param  string  $attribute
@@ -208,6 +215,45 @@ class Validator extends BaseValidator implements MessageProviderInterface {
 	}
 
 	/**
+	 * Replace all error message place-holders with actual values.
+	 *
+	 * @param  string  $message
+	 * @param  string  $attribute
+	 * @param  string  $rule
+	 * @param  array   $parameters
+	 * @return string
+	 */
+	protected function doReplacements($message, $attribute, $rule, $parameters)
+	{
+		$message = str_replace(':attribute', $this->getAttribute($attribute), $message);
+
+		if (method_exists($this, $replacer = "replace{$rule}"))
+		{
+			$message = $this->$replacer($message, $attribute, $rule, $parameters);
+		}
+		elseif (isset($this->replacements[studly_case($rule)]))
+		{
+			$message = $this->replacements[$rule]($message, $attribute, $rule, $parameters);
+		}
+
+		return $message;
+	}
+
+	/**
+	 * Register an array of custom validator extensions.
+	 *
+	 * @param  array  $extensions
+	 * @return void
+	 */
+	public function addExtensions(array $extensions)
+	{
+		foreach ($extensions as $rule => $extension)
+		{
+			$this->addExtension($rule, $extension);
+		}
+	}
+
+	/**
 	 * Register an array of custom implicit validator extensions.
 	 *
 	 * @param  array  $extensions
@@ -234,6 +280,7 @@ class Validator extends BaseValidator implements MessageProviderInterface {
 	public function addExtension($rule, $extension)
 	{
 		$this->extensions[$rule] = $extension;
+		$this->nonIterableRuleVys[] = studly_case($rule);
 	}
 
 	/**
@@ -250,6 +297,44 @@ class Validator extends BaseValidator implements MessageProviderInterface {
 		$this->implicitRules[] = studly_case($rule);
 		$this->nonIterableRules[] = studly_case($rule);
 	}
+
+
+	/**
+	 * Get the array of custom validator replacements.
+	 *
+	 * @return array
+	 */
+	public function getReplacements()
+	{
+		return $this->replacements;
+	}
+
+	/**
+	 * Register an array of custom validator replacements.
+	 *
+	 * @param  array  $replacements
+	 * @return void
+	 */
+	public function addReplacements(array $replacements)
+	{
+		foreach ($replacements as $rule => $replacement)
+		{
+			$this->addReplacement($rule, $replacement);
+		}
+	}
+
+	/**
+	 * Register a custom validator replacement.
+	 *
+	 * @param  string   $rule
+	 * @param  Closure|string  $replacement
+	 * @return void
+	 */
+	public function addReplacement($rule, $replacement)
+	{
+		$this->replacements[studly_case($rule)] = $replacement;
+	}
+
 
 	/**
 	 * Get an item from an array using "dot" notation and "wildcards".
