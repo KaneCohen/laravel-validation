@@ -32,7 +32,7 @@ Now, in the same `providers` array you need to add new package:
 
 ## Usage
 
-Mostly the same as in core Validation. Whenit comes to validation with wildcrads here's an example:
+Mostly the same as in core Validation. When it comes to validation with wildcrads here's an example:
 
 
 ````php
@@ -68,4 +68,19 @@ $rules = array(
 
 $v = Validator::make($input, $rules);
 
+````
+
+Important notice, though. When using wildcards it might be difficult to set up a custom attribute name for rules like: `users` and `users.*`.
+That's because of the way how `array_get` helper function works. Workaround is to add cutom attributes name during creation of the Validator (third parameter).
+
+------
+
+New addition: **Custom error replacements**.
+
+Allows to add error message replacements via closures:
+
+````php
+	$validator->addReplacement('foo', function($message, $attribute, $rule, $parameters) {
+		return str_replace(':foo', 'Custom Replacement', $message);
+	});
 ````
