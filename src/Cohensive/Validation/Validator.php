@@ -1,10 +1,12 @@
-<?php namespace Cohensive\Validation;
+<?php
+namespace Cohensive\Validation;
 
 use Closure;
 use Illuminate\Validation\Validator as BaseValidator;
 use Illuminate\Support\Contracts\MessageProviderInterface;
 
-class Validator extends BaseValidator implements MessageProviderInterface {
+class Validator extends BaseValidator implements MessageProviderInterface
+{
 
 	/**
 	 * The non iterable validation rules.

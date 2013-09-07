@@ -1,8 +1,10 @@
-<?php namespace Cohensive\Validation;
+<?php
+namespace Cohensive\Validation;
 
 use Illuminate\Validation\Factory as BaseFactory;
 
-class Factory extends BaseFactory {
+class Factory extends BaseFactory
+{
 
 	/**
 	 * All of the custom validator replacements.
