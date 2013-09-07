@@ -1,6 +1,8 @@
 {
 	"name": "cohensive/validation",
-	"description": "",
+	"description": "Extra functionality for Laravel 4 Validator.",
+	"keywords": ["laravel", "validation"],
+	"license": "DBAD",
 	"authors": [
 		{
 			"name": "Kane Cohen",
