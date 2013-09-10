@@ -39,7 +39,7 @@ Mostly the same as in core Validation. When it comes to validation with wildcrad
 
 $input = array('input' => array('foo', 'bar', 'baz'));
 $rules = array(
-	'input.*' => 'Alpha|Min:3'
+	'input:*' => 'Alpha|Min:3'
 );
 
 $v = Validator::make($input, $rules);
@@ -62,16 +62,13 @@ $input = array('users' => array(
 	)
 ));
 $rules = array(
-	'users.*.name' => 'Alpha|Min:3',
-	'users.*.age'  => 'Numeric|Min:18|Max:80'
+	'users:*:name' => 'Alpha|Min:3',
+	'users:*:age'  => 'Numeric|Min:18|Max:80'
 );
 
 $v = Validator::make($input, $rules);
 
 ````
-
-Important notice, though. When using wildcards it might be difficult to set up a custom attribute name for rules like: `users` and `users.*`.
-That's because of the way how `array_get` helper function works. Workaround is to add cutom attributes name during creation of the Validator (third parameter).
 
 ------
 
