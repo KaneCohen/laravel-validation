@@ -72,8 +72,8 @@ class Validator extends BaseValidator implements MessageProviderInterface
 		$value = $this->getValue($attribute);
 
 		// Preg Match checks if asterisk is a wildcard, not part of an attribute name.
-		// Possible wildcard positions: *.foo | foo.*.bar | foo.*
-		if (is_array($value) and preg_match('/(^|\.)\*(\.|$)/', $attribute))
+		// Possible wildcard positions: *:foo | foo:*:bar | foo:*
+		if (is_array($value) and preg_match('/(^|\:)\*(\:|$)/', $attribute))
 		{
 			// Do not iterate over value if rule is one of nonIterableRules (namely, Exists or any Extended).
 			if (in_array($rule, $this->nonIterableRules))
