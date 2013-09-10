@@ -354,14 +354,14 @@ class Validator extends BaseValidator implements MessageProviderInterface
 
 		// Store resulting array if key contains wildcard.
 		$deepArray = array();
-		$keys = explode('.', $key);
+		$keys = explode(':', $key);
 		foreach ($keys as $n => $segment)
 		{
 			if ($segment == '*') {
 				// Get the rest of the keys besides current one.
 				$keySlice = array_slice($keys, $n+1);
 				// Generate new dot notation key string.
-				$innerKey = implode('.', $keySlice);
+				$innerKey = implode(':', $keySlice);
 				if (is_array($array))
 				{
 					foreach ($array as $item)
