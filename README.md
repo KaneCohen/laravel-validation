@@ -10,7 +10,7 @@ to provide validation of data with wildcards. How does wildcrads work:
 Add following require to your `composer.json` file:
 
 ~~~
-    "cohensive/validation": "1.0.*"
+    "cohensive/validation": "dev-master"
 ~~~
 
 Then run `composer install` or `composer update` to download it and autoload.
