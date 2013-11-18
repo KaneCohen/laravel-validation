@@ -14,8 +14,8 @@
 	},
 	"require-dev": {
 		"mockery/mockery": "0.7.2",
-		"illuminate/validation": ">=4.0.*",
-		"illuminate/support": ">=4.0.*",
+		"illuminate/validation": "~4.0",
+		"illuminate/support": "~4.0",
 		"phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
