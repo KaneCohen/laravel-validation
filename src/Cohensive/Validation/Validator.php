@@ -183,39 +183,6 @@ class Validator extends BaseValidator implements MessageProviderInterface
 		return ! is_null($otherValue = $this->getValue($other)) and $value != $otherValue;
 	}
 
-	/*
-	 * Get the size of an attribute.
-	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @return mixed
-	 */
-	protected function getSize($attribute, $value)
-	{
-		$hasNumeric = $this->hasRule($attribute, $this->numericRules);
-
-		// This method will determine if the attribute is a number, string, array or file and
-		// return the proper size accordingly. If it is a number, then number itself
-		// is the size. If it is a file, we take kilobytes, and for a string the
-		// entire length of the string will be considered the attribute size.
-		if (is_numeric($value) and $hasNumeric)
-		{
-			return $value;
-		}
-		elseif (is_array($value))
-		{
-			return count($value);
-		}
-		elseif ($value instanceof File)
-		{
-			return $value->getSize() / 1024;
-		}
-		else
-		{
-			return $this->getStringSize($value);
-		}
-	}
-
 	/**
 	 * Replace all error message place-holders with actual values.
 	 *
