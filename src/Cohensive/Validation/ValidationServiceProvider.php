@@ -22,7 +22,7 @@ class ValidationServiceProvider extends ServiceProvider
 	{
 		$this->registerPresenceVerifier();
 
-		$this->bindShared('validation', function($app)
+		$this->app->bindShared('validator', function($app)
 		{
 			$validator = new Factory($app['translator'], $app);
 
