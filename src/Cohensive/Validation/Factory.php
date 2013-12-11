@@ -62,15 +62,15 @@ class Factory extends BaseFactory
 	 * @param  array  $messages
 	 * @return \Cohensive\Validation\Validator
 	 */
-	protected function resolve($data, $rules, $messages)
+	protected function resolve($data, $rules, $messages, $customAttributes)
 	{
 		if (is_null($this->resolver))
 		{
-			return new Validator($this->translator, $data, $rules, $messages);
+			return new Validator($this->translator, $data, $rules, $messages, $customAttributes);
 		}
 		else
 		{
-			return call_user_func($this->resolver, $this->translator, $data, $rules, $messages);
+			return call_user_func($this->resolver, $this->translator, $data, $rules, $messages, $customAttributes);
 		}
 	}
 
