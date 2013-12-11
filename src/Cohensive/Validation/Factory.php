@@ -19,7 +19,7 @@ class Factory extends BaseFactory
 	 * @param  array  $data
 	 * @param  array  $rules
 	 * @param  array  $messages
-	 * @return \Illuminate\Validation\Validator
+	 * @return \Cohensive\Validation\Validator
 	 */
 	public function make(array $data, array $rules, array $messages = array(), array $customAttributes = array())
 	{
@@ -53,7 +53,7 @@ class Factory extends BaseFactory
 	 * @param  array  $data
 	 * @param  array  $rules
 	 * @param  array  $messages
-	 * @return \Illuminate\Validation\Validator
+	 * @return \Cohensive\Validation\Validator
 	 */
 	protected function resolve($data, $rules, $messages, $customAttributes)
 	{
