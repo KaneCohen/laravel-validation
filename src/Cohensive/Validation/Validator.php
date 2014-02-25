@@ -276,7 +276,7 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	 * Register a custom validator extension.
 	 *
 	 * @param  string   $rule
-	 * @param  Closure|string  $extension
+	 * @param  \Closure|string  $extension
 	 * @return void
 	 */
 	public function addExtension($rule, $extension)
@@ -289,10 +289,10 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	 * Register a custom implicit validator extension.
 	 *
 	 * @param  string   $rule
-	 * @param  Closure  $extension
+	 * @param  \Closure  $extension
 	 * @return void
 	 */
-	public function addImplicitExtension($rule, Closure $extension)
+	public function addImplicitExtension($rule, $extension)
 	{
 		$this->addExtension($rule, $extension);
 
@@ -329,7 +329,7 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	 * Register a custom validator replacement.
 	 *
 	 * @param  string   $rule
-	 * @param  Closure|string  $replacement
+	 * @param  \Closure|string  $replacement
 	 * @return void
 	 */
 	public function addReplacement($rule, $replacement)
