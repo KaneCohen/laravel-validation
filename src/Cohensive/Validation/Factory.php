@@ -53,9 +53,10 @@ class Factory extends BaseFactory
 	 * @param  array  $data
 	 * @param  array  $rules
 	 * @param  array  $messages
+	 * @param  array  $customAttributes
 	 * @return \Cohensive\Validation\Validator
 	 */
-	protected function resolve($data, $rules, $messages, $customAttributes)
+	protected function resolve(array $data, array $rules, array $messages, array $customAttributes)
 	{
 		if (is_null($this->resolver))
 		{
