@@ -17,13 +17,6 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	protected $nonIterableRules = array('Exists');
 
 	/**
-	 * All of the custom validator replacements.
-	 *
-	 * @var array
-	 */
-	protected $replacements = array();
-
-	/**
 	 * Validate a given attribute against a rule.
 	 *
 	 * @param  string  $attribute
@@ -218,31 +211,6 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	}
 
 	/**
-	 * Replace all error message place-holders with actual values.
-	 *
-	 * @param  string  $message
-	 * @param  string  $attribute
-	 * @param  string  $rule
-	 * @param  array   $parameters
-	 * @return string
-	 */
-	protected function doReplacements($message, $attribute, $rule, $parameters)
-	{
-		$message = str_replace(':attribute', $this->getAttribute($attribute), $message);
-
-		if (isset($this->replacers[snake_case($rule)]))
-		{
-			$message = $this->callReplacer($message, $attribute, snake_case($rule), $parameters);
-		}
-		elseif (method_exists($this, $replacer = "replace{$rule}"))
-		{
-			$message = $this->$replacer($message, $attribute, $rule, $parameters);
-		}
-
-		return $message;
-	}
-
-	/**
 	 * Register an array of custom validator extensions.
 	 *
 	 * @param  array  $extensions
@@ -321,7 +289,8 @@ class Validator extends BaseValidator implements MessageProviderInterface
 		$keys = explode(':', $key);
 		foreach ($keys as $n => $segment)
 		{
-			if ($segment == '*') {
+			if ($segment == '*')
+			{
 				// Get the rest of the keys besides current one.
 				$keySlice = array_slice($keys, $n+1);
 				// Generate new dot notation key string.
