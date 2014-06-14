@@ -72,6 +72,9 @@ $v = Validator::make($input, $rules);
 
 ------
 
+#### Deprecated since 4.1!
+Use default Validator `replacer` method.
+
 New addition: **Custom error replacements**.
 
 Allows to add error message replacements via closures:

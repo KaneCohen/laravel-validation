@@ -7,13 +7,6 @@ class Factory extends BaseFactory
 {
 
 	/**
-	 * All of the custom validator replacements.
-	 *
-	 * @var array
-	 */
-	protected $replacements = array();
-
-	/**
 	 * Create a new Validator instance.
 	 *
 	 * @param  array  $data
@@ -42,7 +35,6 @@ class Factory extends BaseFactory
 		}
 
 		$this->addExtensions($validator);
-		$validator->addReplacements($this->replacements);
 
 		return $validator;
 	}
@@ -66,18 +58,6 @@ class Factory extends BaseFactory
 		{
 			return call_user_func($this->resolver, $this->translator, $data, $rules, $messages, $customAttributes);
 		}
-	}
-
-	/**
-	 * Register a custom validator replacement.
-	 *
-	 * @param  string  $rule
-	 * @param  Closure|string  $replacements
-	 * @return void
-	 */
-	public function extendReplacement($rule, $replacement)
-	{
-		$this->replacements[$rule] = $replacement;
 	}
 
 }

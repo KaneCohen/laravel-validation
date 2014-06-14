@@ -2,6 +2,7 @@
 namespace Cohensive\Validation;
 
 use Closure;
+use Symfony\Component\HttpFoundation\File\File;
 use Illuminate\Validation\Validator as BaseValidator;
 use Illuminate\Support\Contracts\MessageProviderInterface;
 
@@ -229,13 +230,13 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	{
 		$message = str_replace(':attribute', $this->getAttribute($attribute), $message);
 
-		if (method_exists($this, $replacer = "replace{$rule}"))
+		if (isset($this->replacers[snake_case($rule)]))
+		{
+			$message = $this->callReplacer($message, $attribute, snake_case($rule), $parameters);
+		}
+		elseif (method_exists($this, $replacer = "replace{$rule}"))
 		{
 			$message = $this->$replacer($message, $attribute, $rule, $parameters);
-		}
-		elseif (isset($this->replacements[studly_case($rule)]))
-		{
-			$message = $this->replacements[$rule]($message, $attribute, $rule, $parameters);
 		}
 
 		return $message;
@@ -281,7 +282,7 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	 */
 	public function addExtension($rule, $extension)
 	{
-		$this->extensions[$rule] = $extension;
+		$this->extensions[snake_case($rule)] = $extension;
 		$this->nonIterableRuleVys[] = studly_case($rule);
 	}
 
@@ -298,43 +299,6 @@ class Validator extends BaseValidator implements MessageProviderInterface
 
 		$this->implicitRules[] = studly_case($rule);
 		$this->nonIterableRules[] = studly_case($rule);
-	}
-
-
-	/**
-	 * Get the array of custom validator replacements.
-	 *
-	 * @return array
-	 */
-	public function getReplacements()
-	{
-		return $this->replacements;
-	}
-
-	/**
-	 * Register an array of custom validator replacements.
-	 *
-	 * @param  array  $replacements
-	 * @return void
-	 */
-	public function addReplacements(array $replacements)
-	{
-		foreach ($replacements as $rule => $replacement)
-		{
-			$this->addReplacement($rule, $replacement);
-		}
-	}
-
-	/**
-	 * Register a custom validator replacement.
-	 *
-	 * @param  string   $rule
-	 * @param  \Closure|string  $replacement
-	 * @return void
-	 */
-	public function addReplacement($rule, $replacement)
-	{
-		$this->replacements[studly_case($rule)] = $replacement;
 	}
 
 
