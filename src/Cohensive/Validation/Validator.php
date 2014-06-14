@@ -217,6 +217,21 @@ class Validator extends BaseValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Get the displayable name of the attribute.
+	 *
+	 * @param  string  $attribute
+	 * @return string
+	 */
+	protected function getAttribute($attribute)
+	{
+		if (strpos($attribute, ':') !== false) {
+			$attribute = preg_replace('/:((\d+)|(\*)):/', ':', $attribute);
+		}
+
+		return parent::getAttribute($attribute);
+	}
+
+	/**
 	 * Replace all error message place-holders with actual values.
 	 *
 	 * @param  string  $message
