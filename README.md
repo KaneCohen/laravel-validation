@@ -1,6 +1,6 @@
 # Extended Laravel Validation
 
-This class extends Laravel 4 Validation package changing some basic functionality
+This class extends Laravel Validation package changing some basic functionality
 to provide validation of data with wildcards. How do wildcrads work:
 
 ![wildcrads](https://f.cloud.github.com/assets/578455/448315/c6de7cf4-b23e-11e2-97b0-aa0296c92d22.jpg)
