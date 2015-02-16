@@ -207,7 +207,7 @@ class Validator extends BaseValidator
 
         // Store resulting array if key contains wildcard.
         $deepArray = array();
-        $keys = explode(':', $key);
+        $keys = preg_split('/:|\./', $key);
         foreach ($keys as $n => $segment)
         {
             if ($segment == '*')
