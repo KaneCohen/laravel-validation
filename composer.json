@@ -1,6 +1,6 @@
 {
 	"name": "cohensive/validation",
-	"description": "Extra functionality for Laravel 4 Validator.",
+	"description": "Extra functionality for Laravel 5 Validator.",
 	"keywords": ["laravel", "validation"],
 	"license": "BSD-3-Clause",
 	"authors": [
@@ -13,11 +13,11 @@
 		"php": ">=5.3.0"
 	},
 	"require-dev": {
-		"illuminate/container": "4.1.*",
-		"illuminate/support": "4.1.*",
-		"illuminate/validation": "4.1.*",
-		"symfony/http-foundation": "2.4.*",
-		"symfony/translation": "2.4.*",
+		"illuminate/container": "5.0.*@dev",
+		"illuminate/support": "5.0.*@dev",
+		"illuminate/validation": "5.0.*@dev",
+		"symfony/http-foundation": "2.7.*",
+		"symfony/translation": "2.7.*",
 		"mockery/mockery": "0.9.*",
 		"phpunit/phpunit": "4.0.*"
 	},
