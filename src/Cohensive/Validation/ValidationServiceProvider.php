@@ -1,7 +1,9 @@
-<?php namespace Cohensive\Validation;
+<?php
+namespace Cohensive\Validation;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\DatabasePresenceVerifier;
+use Illuminate\Contracts\Validation\ValidatesWhenResolved;
 
 class ValidationServiceProvider extends ServiceProvider
 {

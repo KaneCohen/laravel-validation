@@ -1,12 +1,9 @@
 <?php
 namespace Cohensive\Validation;
 
-use Closure;
-use Symfony\Component\HttpFoundation\File\File;
 use Illuminate\Validation\Validator as BaseValidator;
-use Illuminate\Support\Contracts\MessageProviderInterface;
 
-class Validator extends BaseValidator implements MessageProviderInterface
+class Validator extends BaseValidator
 {
     /**
      * The non iterable validation rules.
