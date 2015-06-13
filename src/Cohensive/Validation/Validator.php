@@ -34,11 +34,12 @@ class Validator extends BaseValidator
             // Required to test items even if array is empty.
             $value = empty($value) ? array(null) : $value;
 
-            foreach ($value as $item) {
+            foreach ($value as $index => $item) {
                 $validatable = $this->isValidatable($rule, $attribute, $item);
 
                 if ($validatable and ! $this->$method($attribute, $item, $parameters, $this)) {
-                    $this->addFailure($attribute, $rule, $parameters);
+                    $name = str_replace('*', $index, $attribute);
+                    $this->addFailure($name, $rule, $parameters);
                 }
             }
         } else {
